@@ -1,0 +1,4 @@
+{'username': 'James', 'useremail': 'james@email.com'}{'username': 'Jerry', 'useremail': 'jerry@email.com'}
+
+
+users = [{'username': 'James', 'useremail': 'james@email.com'}, {'username': 'Jerry', 'useremail': 'jerry@email.com'} ]
