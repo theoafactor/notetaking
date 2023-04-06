@@ -1,58 +1,72 @@
-## ask the user for their names 
-username = input("Enter your name: ")
+from includes import user_include
 
-# ask the user for their email
-useremail = input("Enter your email: ")
+option = user_include.startApp()
 
-## user dictionary to represent the data
-user = {
-    "username": username,
-    "useremail": useremail
-}
+if option == '5':
+    print("Goodbye!")
+    exit()
 
-## typecast the user dictionary to a string
-#user = str(user)
+elif option == "4":
+    print("Listing all users ...")
+    from os import path
+    result = path.exists("users.py")
 
-## check if the users.py file exists
-from os import path
+    if result is True:
+        ## file exists already
+        import users
+        users = users.users
+        print("---------------------------------")
+        print("Username    |    User Email")
+        print("---------------------------------")
+        for user in users:
+            print(user['username'] + "     |     " +user['useremail'])
+    else:
+        ## the file does not exist
+        print("There are no users at the moment")
 
-result = path.exists("users.py")
+elif option == '1':
+    print("Creating new account ")
+    user = user_include.getUserData()
+    ## check if the users.py file exists
+    from os import path
 
-if result == True:
-    ## the file exists already
-    print("The file exists already")
-    import users
-    users_list = users.users
+    result = path.exists("users.py")
 
-    users_list.append(user)
+    if result == True:
+        ## the file exists already
+        print("The file exists already")
+        import users
+        users_list = users.users
+
+        users_list.append(user)
     
-    fileobject = open("users.py", "w")
+        fileobject = open("users.py", "w")
 
-    users_list = "users="+str(users_list)
+        users_list = "users="+str(users_list)
 
-    fileobject.write(users_list)
+        fileobject.write(users_list)
 
-    print("user added successfully!")
+        print("user added successfully!")
 
-    fileobject.close()
+        fileobject.close()
 
 
 
-else:
-    print("The file does not exist")
-    print("Creating the file users.py ...")
-    fileobject = open("users.py", "w")
+    else:
+        print("The file does not exist")
+        print("Creating the file users.py ...")
+        fileobject = open("users.py", "w")
 
-    users_list = []
-    users_list.append(user)
-    users_list = str(users_list)
-    data = "users=" + users_list
+        users_list = []
+        users_list.append(user)
+        users_list = str(users_list)
+        data = "users=" + users_list
 
-    fileobject.write(data)
+        fileobject.write(data)
 
-    print("user added successfully!")
+        print("user added successfully!")
 
-    fileobject.close()
+        fileobject.close()
 
 
 
